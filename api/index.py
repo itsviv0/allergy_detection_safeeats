@@ -21,13 +21,12 @@ def preprocess_text(ocr_text):
     ingredients_list = split_ingredients(cleaned_text)
     return ingredients_list
 
-@app.route('/preprocess', methods=['POST'])
+@app.route('/preprocess', methods=['GET'])
 def preprocess_api():
-    data = request.get_json()
-    if not data or 'ocr_text' not in data:
-        return jsonify({"error": "Missing 'ocr_text' in request"}), 400
-    
-    ocr_text = data['ocr_text']
+    ocr_text = request.args.get('ocr_text')
+    if not ocr_text:
+        return jsonify({"error": "Missing 'ocr_text' query parameter"}), 400
+
     try:
         result = preprocess_text(ocr_text)
         return jsonify({"ingredients": result})
