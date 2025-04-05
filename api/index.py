@@ -3,6 +3,7 @@ import re
 
 app = Flask(__name__)
 
+# checking
 def preprocess_text(ocr_text):
     def clean_text(text):
         text = text.lower()
