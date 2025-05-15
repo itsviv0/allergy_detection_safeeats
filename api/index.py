@@ -51,7 +51,7 @@ def preprocess_api():
         mapped_data = map_ingredients_to_allergies(ingredients_list, allergen_df)
         result = {
             "ingredients": ingredients_list,
-            "allegens": mapped_data,
+            "allergens": mapped_data,
         }
         return jsonify(result)
     except Exception as e:
