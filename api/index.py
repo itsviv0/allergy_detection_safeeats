@@ -5,7 +5,7 @@ import re
 
 app = Flask(__name__)
 
-CSV_PATH = os.path.join(os.path.dirname(__file__), "dataset.csv")
+CSV_PATH = os.path.join(os.path.dirname(__file__), "allergen_dataset.csv")
 allergen_df = pd.read_csv(CSV_PATH)
 
 
