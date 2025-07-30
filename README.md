@@ -1,28 +1,84 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+# SafeEats - Allergy Detection API
 
-# Flask + Vercel
+![Flask](https://img.shields.io/badge/flask-%e543405e.svg?style=for-the-badge&logo=flask&logoColor=white)
+![APIs](https://img.shields.io/badge/apis-%3485354.svg?style=for-the-badge&logo=&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23644e.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Python](https://img.shields.io/badge/python-%348e.svg?style=for-the-badge&logo=python&logoColor=white)
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+SafeEats is an intelligent allergy detection system that helps users identify potential allergens in food products by analyzing ingredient lists. This production-ready API serves as a Backend for Frontend (BFF) service, processing OCR text from food labels and mapping ingredients to known allergens.
 
-## Demo
+## 🌟 Features
 
-https://flask-python-template.vercel.app/
+- **Ingredient Text Processing**: Cleans and extracts ingredients from OCR text
+- **Allergen Mapping**: Maps ingredients to their corresponding allergens using a comprehensive dataset
+- **Production Ready**: Deployed on Vercel with serverless functions
+- **RESTful API**: Simple GET endpoint for easy integration
 
-## How it Works
+## 🚀 Production Deployment
 
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
+The SafeEats API is deployed and available at: **https://allergydetectionsafeeats.app/preprocess**
 
-## Running Locally
+### API Endpoint
+
+```
+GET /preprocess?ocr_text=<ingredient_text>
+```
+
+**Example Request:**
 
 ```bash
+curl "https://allergydetectionsafeeats.app/preprocess?ocr_text=ingredients%20wheat%20flour%20Milk%20%2886%25%29%2C%20eggs%2C%20Cocoa%20Solids%20%281.4%25%29%2C%20soy%20%28lecithun%20415%2C%29%2C%20Sequestrant%20%28INS%20451%20%28i%29%29%2C%20lodized
+"
+```
+
+**Example Response:**
+
+```json
+{
+  "ingredients": ["wheat flour", "milk", "eggs", "soy lecithin"],
+  "allergens": {
+    "wheat flour": "gluten",
+    "milk": "dairy",
+    "eggs": "eggs",
+    "soy lecithin": "soy"
+  }
+}
+```
+
+## 🛠️ How it Works
+
+This application uses Flask 3 with Vercel's serverless functions to:
+
+1. **Text Preprocessing**: Cleans OCR text and extracts ingredient lists
+2. **Allergen Detection**: Maps each ingredient against a comprehensive allergen database
+3. **Response Generation**: Returns structured JSON with ingredients and their associated allergens
+
+The system is designed to handle real-world OCR text with various formatting inconsistencies and extract meaningful ingredient information.
+
+## 🏃‍♂️ Running Locally
+
+```bash
+# Install Vercel CLI
 npm i -g vercel
+
+# Start development server
 vercel dev
 ```
 
-Your Flask application is now available at `http://localhost:3000`.
+Your Flask application will be available at `http://localhost:3000`.
 
-## One-Click Deploy
+## 📁 Project Structure
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+```
+├── api/
+│   ├── index.py              # Main Flask application
+│   ├── allergen_dataset.csv  # Allergen mapping database
+│   └── dataset.csv           # Additional dataset
+├── requirements.txt          # Python dependencies
+├── vercel.json              # Vercel configuration
+└── README.md                # This file
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+## 🧪 Capstone Project
+
+This is part of a 7th semester capstone project focused on food safety and allergy detection technology. The BFF architecture enables seamless integration with frontend applications while providing robust allergen detection capabilities.
